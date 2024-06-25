@@ -137,12 +137,17 @@ class Reminder(models.Model):
     Audio = models.FileField(upload_to='audio/', default='default_audio.mp3')
     Notes = models.TextField(max_length=50)
     Checked = models.BooleanField(default=False)
+
     def __str__(self):
         return str(self.ReminderID)
 
     class Meta:
         ordering = ['ReminderID']
-
+        
+    def decrease_pills_count(self):
+        if self.DrugName.Pillsnum > Reminder.Checked==True:
+            self.DrugName.Pillsnum -= 1
+            self.DrugName.save()
 
 
 

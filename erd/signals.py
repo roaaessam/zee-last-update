@@ -59,3 +59,6 @@ def update_pill_count_on_delete(sender, instance, **kwargs):
     if instance.Checked:
         patient.total_pills += instance.PillCount
     patient.save()
+    
+def update_pills_count(sender, instance, **kwargs):
+    instance.decrease_pills_count()    
